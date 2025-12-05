@@ -62,7 +62,7 @@ body {
 }
 
 .logo-img {
-    height: 42px;
+    height: 60px;
     width: auto;
     display: block;
     filter: drop-shadow(0 0 8px rgba(34, 197, 94, 0.3));
@@ -460,48 +460,31 @@ body {
     color: #e5e7eb;
 }
 
-/* SPONSORS avec animation */
+/* SPONSORS : logo brut, grand, qui grossit au hover */
 .sponsors {
     padding-bottom: 4rem;
+    text-align: center;
 }
 
 .sponsor-grid {
     display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
     justify-content: center;
-}
-
-.sponsor-card {
-    background: rgba(15, 23, 42, 0.6);
-    backdrop-filter: blur(10px);
-    border-radius: 1.25rem;
-    padding: 0.75rem 1.25rem;
-    border: 1px solid rgba(148, 163, 184, 0.25);
-    display: flex;
     align-items: center;
-    justify-content: center;
-    min-width: 140px;
-    transition: all 0.3s ease;
-}
-
-.sponsor-card:hover {
-    transform: scale(1.05) rotate(2deg);
-    border-color: rgba(34, 197, 94, 0.5);
-    box-shadow: 0 10px 30px rgba(34, 197, 94, 0.3);
+    margin-top: 1.5rem;
 }
 
 .sponsor-logo {
-    /* image du sponsor dans le même dossier */
-    max-width: 140px;
-    max-height: 140px;
-    object-fit: contain;
-    transition: transform 0.3s ease, filter 0.3s ease;
+    width: 220px;       /* logo bien visible */
+    max-width: 80%;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 0 14px rgba(34, 197, 94, 0.6));
+    transition: transform 0.25s ease, filter 0.25s ease;
 }
 
-.sponsor-card:hover .sponsor-logo {
-    transform: scale(1.6);
-    filter: brightness(1.2);
+.sponsor-logo:hover {
+    transform: scale(1.12);
+    filter: drop-shadow(0 0 20px rgba(34, 197, 94, 0.9));
 }
 
 /* FAQ styles */
@@ -777,10 +760,8 @@ body {
         </div>
 
         <div class="sponsor-grid">
-            <div class="sponsor-card">
-                <!-- logo sponsor dans le même dossier -->
-                <img src="logomart.png" alt="Sponsor" class="sponsor-logo">
-            </div>
+            <!-- logo sponsor brut, sans card -->
+            <img src="logomart.png" alt="Sponsor" class="sponsor-logo">
         </div>
     </section>
 
@@ -808,8 +789,8 @@ body {
                 <p>R : 3,70 km, je crois (Ludo nous le confirmera le jour J)</p>
             </div>
             <div class="faq-item">
-                <strong>Q : Y aura-t-il des surprises pour les supporters ?</strong>
-                <p>R : Oui mais encore plus pour les coureurs !!</p>
+                <strong>Q : Mais qui est Ludo ??</strong>
+                <p>R : Un homme incroyablement sympa qui court supra vite et il est vraiment trop fort.</p>
             </div>
             <div class="faq-item">
                 <strong>Q : Que faire si je me perds en chemin ?</strong>
@@ -873,9 +854,9 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Countdown timer jusqu'au 3 janvier 2025 à 15h
+// Countdown timer jusqu'au 3 janvier 2026 à 15h
 function updateCountdown() {
-    const eventDate = new Date('2025-01-03T15:00:00'); // heure locale
+    const eventDate = new Date('2026-01-03T15:00:00'); // heure locale
     const now = new Date();
     const distance = eventDate.getTime() - now.getTime();
 
