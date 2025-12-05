@@ -487,6 +487,40 @@ body {
     filter: drop-shadow(0 0 20px rgba(34, 197, 94, 0.9));
 }
 
+/* PARTICIPANTS */
+.participants {
+    padding-bottom: 4rem;
+}
+
+.participants-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 500px;
+}
+
+.participants-list li {
+    background: rgba(15, 23, 42, 0.75);
+    border-radius: 0.9rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    margin-bottom: 0.7rem;
+    font-size: 0.98rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.3rem;
+}
+
+.participants-list li strong {
+    color: #f9fafb;
+}
+
+.participant-note {
+    color: #9ca3af;
+    font-size: 0.85rem;
+    font-style: italic;
+}
+
 /* FAQ styles */
 .faq-list {
     display: flex;
@@ -751,6 +785,27 @@ body {
                 <p>Objectif : du fun, des encouragements, des photos compromettantes de Ludo et beaucoup de bonne humeur.</p>
             </div>
         </div>
+    </section>
+
+    <!-- SECTION PARTICIPANTS -->
+    <section class="section participants">
+        <div class="section-title-group">
+            <h2>Participants inscrits</h2>
+            <p>Liste mise à jour au fur et à mesure des inscriptions.</p>
+        </div>
+
+        <ul class="participants-list">
+            <li>
+                <strong>Ludo</strong>
+                <span class="participant-note">(j'espère qu'il sera là...)</span>
+            </li>
+            <li>
+                Océane Gral
+            </li>
+            <!-- Tu pourras ajouter d'autres participants ici :
+            <li>Prénom Nom</li>
+            -->
+        </ul>
     </section>
 
     <section class="section sponsors">
