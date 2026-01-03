@@ -1,46 +1,48 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>La course de Ludo</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="ludocourt-removebg-preview.png">
+<meta charset="UTF-8">
+<title>La course de Ludo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="ludocourt-removebg-preview.png">
 
 <style>
+/* ===== BASE (inchangé) ===== */
 *{box-sizing:border-box;margin:0;padding:0}
 body{
-    font-family:system-ui,sans-serif;
+    font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
     background:#070b10;
-    color:#f9fafb
+    color:#f9fafb;
+    line-height:1.6
 }
 
-/* HERO */
+/* ===== HERO ===== */
 .hero{
-    min-height:80vh;
-    background:url("ludocourt.jpg") center 20%/cover no-repeat;
     position:relative;
+    min-height:80vh;
     display:flex;
     align-items:center;
     justify-content:center;
     text-align:center;
+    background:url("ludocourt.jpg") center 20%/cover no-repeat;
+    overflow:hidden
 }
 .hero-overlay{
     position:absolute;
     inset:0;
     background:linear-gradient(to bottom,rgba(15,23,42,.9),rgba(15,23,42,.95))
 }
-.hero-content{position:relative;z-index:2}
+.hero-content{position:relative;z-index:2;max-width:700px}
 
-/* TITRES */
 h1{
-    font-size:3rem;
+    font-size:clamp(2.5rem,4vw,3.4rem);
     background:linear-gradient(135deg,#fff,#22c55e);
     -webkit-background-clip:text;
     color:transparent
 }
-.hero-subtitle{margin:1rem 0}
+.hero-subtitle{margin:1rem 0;color:#e5e7eb}
 
-/* COUNTDOWN */
+/* ===== COUNTDOWN ===== */
 .countdown{
     display:inline-flex;
     gap:1rem;
@@ -60,21 +62,22 @@ h1{
 }
 .countdown-label{
     font-size:.7rem;
-    color:#9ca3af
+    color:#9ca3af;
+    text-transform:uppercase
 }
 
-/* MESSAGE FIN */
+/* ===== FIN : VIVE LUDO ===== */
 .done-message{
     display:none;
-    font-size:2.4rem;
-    font-weight:800;
-    color:#22c55e;
+    font-size:2.6rem;
+    font-weight:900;
     margin:2rem 0;
-    text-shadow:0 0 20px rgba(34,197,94,.8);
+    color:#22c55e;
+    text-shadow:0 0 25px rgba(34,197,94,.8);
     position:relative
 }
 
-/* FEU D’ARTIFICE */
+/* Feu d’artifice (1 fois) */
 .fireworks::before,
 .fireworks::after{
     content:"";
@@ -84,9 +87,9 @@ h1{
     width:8px;
     height:8px;
     border-radius:50%;
-    animation:fireworks 1.5s infinite ease-out
+    animation:fireworks 1.6s ease-out forwards;
 }
-.fireworks::after{animation-delay:.75s}
+.fireworks::after{animation-delay:.8s}
 
 @keyframes fireworks{
     0%{
@@ -94,22 +97,24 @@ h1{
         opacity:1
     }
     100%{
-        box-shadow:-120px -40px #22c55e,
-                   100px -60px #facc15,
-                   -80px 90px #60a5fa,
-                   90px 70px #f472b6;
+        box-shadow:
+            -140px -50px #22c55e,
+            120px -70px #facc15,
+            -90px 100px #60a5fa,
+            110px 80px #f472b6;
         opacity:0
     }
 }
 
-/* BOUTONS */
+/* ===== BOUTONS ===== */
 .hero-buttons{
     display:flex;
     gap:1rem;
-    justify-content:center
+    justify-content:center;
+    flex-wrap:wrap
 }
 .btn{
-    padding:.65rem 1.4rem;
+    padding:.7rem 1.5rem;
     border-radius:999px;
     text-decoration:none;
     font-weight:500;
@@ -122,8 +127,39 @@ h1{
 }
 .btn.primary:hover{transform:translateY(-2px)}
 .btn.secondary{
-    border:1px solid #9ca3af;
+    border:1px solid rgba(148,163,184,.6);
     color:#e5e7eb
+}
+
+/* ===== SECTION ===== */
+.section{
+    padding:3.5rem 1.5rem;
+    max-width:1100px;
+    margin:0 auto
+}
+.section-title-group{
+    text-align:center;
+    margin-bottom:2rem
+}
+
+/* ===== GALERIE PHOTO ===== */
+.photo-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+    gap:1.2rem
+}
+.photo-grid img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    border-radius:1rem;
+    border:1px solid rgba(148,163,184,.25);
+    box-shadow:0 15px 30px rgba(0,0,0,.4);
+    transition:.35s ease
+}
+.photo-grid img:hover{
+    transform:scale(1.05);
+    box-shadow:0 25px 50px rgba(34,197,94,.35)
 }
 </style>
 </head>
@@ -131,52 +167,77 @@ h1{
 <body>
 
 <section class="hero">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-        <h1>La course de Ludo</h1>
-        <p class="hero-subtitle">
-            Une course chill, des potes, du ravito… et Ludo qui court.
-        </p>
+<div class="hero-overlay"></div>
+<div class="hero-content">
 
-        <!-- COUNTDOWN -->
-        <div class="countdown" id="countdown">
-            <div class="countdown-item">
-                <span class="countdown-value" id="days">0</span>
-                <span class="countdown-label">Jours</span>
-            </div>
-            <div class="countdown-item">
-                <span class="countdown-value" id="hours">00</span>
-                <span class="countdown-label">Heures</span>
-            </div>
-            <div class="countdown-item">
-                <span class="countdown-value" id="minutes">00</span>
-                <span class="countdown-label">Min</span>
-            </div>
-        </div>
+<h1>La course de Ludo</h1>
+<p class="hero-subtitle">
+Une course chill, des potes, des supporters… et Ludo qui court.
+</p>
 
-        <!-- MESSAGE FIN -->
-        <div class="done-message" id="doneMessage">
-            🎆 C’EST FAIT 🎆
-            <div class="fireworks"></div>
-        </div>
-
-        <!-- BOUTONS -->
-        <div class="hero-buttons">
-            <a href="https://drive.google.com/drive/folders/1n4HnwDzeglbsHxYaOqkTIL0_CXd7hG9s?usp=sharing"
-               target="_blank"
-               class="btn primary">
-                📸 La course en photo
-            </a>
-
-            <a href="#infos-course" class="btn secondary">
-                Infos pratiques
-            </a>
-        </div>
+<div class="countdown" id="countdown">
+    <div class="countdown-item">
+        <span class="countdown-value" id="days">0</span>
+        <span class="countdown-label">Jours</span>
     </div>
+    <div class="countdown-item">
+        <span class="countdown-value" id="hours">00</span>
+        <span class="countdown-label">Heures</span>
+    </div>
+    <div class="countdown-item">
+        <span class="countdown-value" id="minutes">00</span>
+        <span class="countdown-label">Min</span>
+    </div>
+</div>
+
+<div class="done-message" id="doneMessage">
+    🎆 VIVE LUDO 🎆
+    <div class="fireworks"></div>
+</div>
+
+<div class="hero-buttons">
+<a href="https://drive.google.com/drive/folders/1n4HnwDzeglbsHxYaOqkTIL0_CXd7hG9s?usp=sharing"
+   target="_blank" class="btn primary">
+📸 La course en photo
+</a>
+<a href="#infos-course" class="btn secondary">Infos pratiques</a>
+</div>
+
+</div>
+</section>
+
+<!-- ===== NOUVELLE SECTION PHOTO ===== -->
+<section class="section">
+<div class="section-title-group">
+<h2>Les duos en photo</h2>
+<p>Parce qu’une course, c’est mieux à deux ❤️</p>
+</div>
+
+<div class="photo-grid">
+<img src="0827C69E-2F44-4.jpg">
+<img src="177-B5F2-D2CA0.jpg">
+<img src="986CFA5.jpg">
+<img src="IMG_3897.JPEG">
+<img src="IMG_3899.JPEG">
+<img src="IMG_0209.JPEG">
+<img src="IMG_0489.JPEG">
+<img src="IMG_1583.JPEG">
+<img src="IMG_1586.JPEG">
+<img src="IMG_1587JPEG">
+<img src="IMG_2217.JPEG">
+<img src="IMG_2219.JPEG">
+<img src="IMG_2802.JPEG">
+<img src="IMG_04861.jpg">
+<img src="IMG_5677.JPG">
+<img src="IMG_5730JPG">
+<img src="IMG_5731.JPG">
+<img src="IMG_9863.JPEG">
+<img src="IMG_9936.JPEG">
+<img src="Resized_20260103-1603141.jpg">
+</div>
 </section>
 
 <script>
-// COUNTDOWN
 function updateCountdown(){
     const eventDate=new Date("2026-01-03T15:00:00");
     const now=new Date();
@@ -195,7 +256,6 @@ function updateCountdown(){
     document.getElementById("minutes").textContent=
         String(Math.floor((distance%(1000*60*60))/(1000*60))).padStart(2,"0");
 }
-
 updateCountdown();
 setInterval(updateCountdown,60000);
 </script>
