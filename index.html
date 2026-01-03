@@ -27,14 +27,40 @@ body {
     color: #f9fafb;
     line-height: 1.6;
 }
-        .photo-mot-ludo {
+        .photo-wrapper {
+    position: relative;
+    width: fit-content;
+    margin: 0 auto 1.5rem;
+}
+
+.photo-mot-ludo {
     width: 100%;
     max-width: 500px;
-    margin: 0 auto 1.2rem;
     display: block;
     border-radius: 1.2rem;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
+
+.photo-overlay {
+    position: absolute;
+
+    /* COIN HAUT-GAUCHE de hugomaison
+       collé au COIN BAS-DROIT de photogrp */
+    top: 100%;
+    left: 100%;
+
+    width: 220px;
+    height: 220px;
+
+    object-fit: cover;
+    transform: scale(1.3); /* zoom 30% */
+    transform-origin: top left;
+
+    border-radius: 1.2rem;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+    z-index: 5;
+}
+
 
 
 /* HEADER avec animation au scroll */
@@ -850,7 +876,12 @@ body {
 
     <section class="section section-video">
         <div class="section-title-group">
+    <div class="photo-wrapper">
     <img src="photogrp.jpg" alt="Photo de groupe" class="photo-mot-ludo">
+
+    <img src="hugomaisojn.JPEG" alt="Hugo" class="photo-overlay">
+</div>
+
 
     <h2>Le mot de Ludo</h2>
     <p>Une petite vidéo pour se mettre dans l'ambiance avant le jour J.</p>
@@ -1219,8 +1250,8 @@ window.addEventListener('scroll', () => {
     }
 });
 </script>
-    <img src="hugomaisojn.JPEG" alt="Hugo" class="photo-corner">
 
 </body>
 </html>
+
 
